@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Home fitness{% endblock title%}
+
+{% block body %}
+    <h1>it never gets easier!You just get stronger!</h1>
+
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../static/images/pexels-olly-864990.jpg" class="d-block w-40" alt="width: 200px; height: 100px;">
+    </div>
+    <div class="carousel-item">
+      <img src="../static/images/pexels-pixabay-163351.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="../static/images/pexels-willpicturethis-1954524.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+   <div class="row">
+       <div class="col-md-6 bg-info py-3 px-4">
+            <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Home fitness</button>
+    </form>
+       </div>
+       <div class="col-md-4"></div>
+   </div>
+{% endblock body %}

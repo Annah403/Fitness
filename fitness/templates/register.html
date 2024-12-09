@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Register{% endblock title%}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block body %}
+   <div class="row">
+       <div class="col-md-6 bg-info py-3 px-4">
+            <form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Register</button>
+    </form>
+       </div>
+       <div class="col-md-4"></div>
+   </div>
+{% endblock body %}

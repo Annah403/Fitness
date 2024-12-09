@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title%}Services{% endblock title%}
+{% block body %}
+
+    <h3>Exercises List</h3>
+
+    <div class="row">
+
+ {% for exercise in data %}
+        <div class="col-md-3">
+        <div class="card" style="width: 18rem; height: 20rem">
+                {% if exercise.image %}
+                <img src="{{ exercise.image.url }}" alt="{{ exercise.name }}" style="width: 287px; height: 150px;">
+                {% else %}
+                <img src="{% static 'images/placeholder.jpg' %}" alt="No Image" style="width: 200px; height: 150px; object-fit: cover">
+                {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ exercise.title }}</h5>
+    <p class="card-text">{{ exercise.desc }}</p>
+    <a href="#" class="btn btn-primary">More...</a>
+  </div>
+</div>
+
+</div>
+
+    {% endfor %}
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

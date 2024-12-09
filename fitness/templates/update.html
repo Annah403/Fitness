@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}Update Page{% endblock title%}
+
+{% block body %}
+   <div class="row">
+       <div class="col-md-6 bg-info py-3 px-4">
+           <h1>Update Exercise</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success"> UPDATE EXERCISE</button>
+    </form>
+       </div>
+       <div class="col-md-6"></div>
+   </div>
+{% endblock body %}
