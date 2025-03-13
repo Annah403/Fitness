@@ -81,3 +81,12 @@ footer {
     background-color: #333;
     color: white;
 }
+
+container {
+    max-width: 600px; /* Max width for the form container */
+    margin: 50px auto; /* Center form horizontally and add top margin */
+    padding: 20px;
+    background-color: #fff; /* White background for form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow around form */
+}

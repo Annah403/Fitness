@@ -1,22 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title%}login{% endblock title%}
+{% block title %}Login{% endblock title %}
+
 {% block body %}
-
-
-
-<div class="row">
-    <div class="col-md-6 bg-white py-5 px-5 border-3">
+<!-- Full Page Background Image -->
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center position-relative">
+    <div class="col-md-6 bg-white py-5 px-5 border-3 shadow-lg rounded">
+        <h2 class="text-center mb-4">Login</h2>
         <form action="" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-success">login</button>
+            <button type="submit" class="btn btn-success btn-block mt-4">Login</button>
         </form>
     </div>
-    <div class="col-md-6"></div>
 </div>
 
 {% endblock body %}
 
+{% block extra_css %}
+<style>
+    /* Full Page Background Image */
+    body, html {
+        height: 100%;
+        margin: 0;
+        background-image: ('{% static "images/theme2.jpg" %}');
+        background-size: cover;
+        background-position: center;
+    }
 
+    /* Optional: Dark Overlay for Better Contrast */
+    .container-fluid {
+        position: relative;
+    }
 
+    .container-fluid:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);  /* Semi-transparent dark overlay */
+        z-index: -1;  /* Ensure overlay is behind content */
+    }
+</style>
+{% endblock %}

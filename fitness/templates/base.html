@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,41 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
 
-     {% block head %}
+    {% block head %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
+    {% endblock %}
 
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-    <title> {% block title %}
-      {% endblock title  %}  get fit </title>
+    <title> {% block title %} {% endblock title %} Get Fit </title>
 
-      <style>
-            html, body {
-    height: 100%;
-    margin: 0;
-                background-color: darkgray;
-}
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: darkgray; /* Background color */
+        }
 
-.row {
-    display: flex;
-    justify-content: start; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    height: 100vh;           /* Full viewport height */
-}
+        /* Flexbox layout for centering */
+        .row {
+            display: flex;
+            justify-content: center;  /* Center horizontally */
+            align-items: center;      /* Center vertically */
+            height: 100vh;            /* Full viewport height */
+        }
 
-.col-md-6 {
-    width: 100%;             /* Take up full width of the parent (half of the row in this case) */
-    max-width: 500px;        /* Optional: Set a max-width for the form to make it more compact */
-}
+        .col-md-6 {
+            width: 100%;
+            max-width: 500px;         /* Set max width for form */
+        }
 
-      </style>
+        /* Style for navbar */
+        nav {
+            background-color: #333; /* Dark background */
+        }
+
+        /* Ensure navbar text is white */
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ddd !important; /* Hover effect */
+        }
+
+        /* Adjust logout button styling */
+        .btn-logout {
+            color: white;
+            background-color: #dc3545;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;  /* Smaller font size */
+        }
+
+        .btn-logout:hover {
+            background-color: #c82333; /* Hover color */
+        }
+
+        /* Minimize the login button */
+        .btn-success {
+            padding: 6px 12px;   /* Reduced padding */
+            font-size: 0.9rem;    /* Reduced font size */
+            width: auto;          /* Ensure it's not stretched to full width */
+        }
+
+        .btn-success:hover {
+            background-color: #28a745;
+        }
+    </style>
 
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'index' %}">fitness</a>
+          <a class="navbar-brand" href="{% url 'index' %}">Fitness</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -49,11 +87,9 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
               </li>
-                <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'services' %}">Services</a>
               </li>
-
-
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
               </li>
@@ -65,28 +101,24 @@
                   <li><a class="dropdown-item" href="/services">Fitness</a></li>
                   <li><a class="dropdown-item" href="/services">Cardio</a></li>
                   <li><a class="dropdown-item" href="/services">Yoga</a></li>
-
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="/services">Something else here</a></li>
                 </ul>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">Admin</a>
               </li>
-                {% if request.user.is_authenticated %}
-                <li {% if section == 'about' %} class="nav-item selected"{% endif %}>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'admin_services' %}">ADM-SERVICES</a>
               </li>
-                    <li>
-                        <form action="{% url 'logout' %}" method="post">
-                            {% csrf_token %}
-                           <button type="submit">LogOut</button>
-                        </form>
-                    </li>
-                {% endif %}
+              <li>
+                  <form action="{% url 'logout' %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn-logout">LogOut</button>
+                  </form>
+              </li>
+              {% endif %}
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -94,19 +126,19 @@
             </form>
           </div>
         </div>
-      </nav>
+    </nav>
 
-      {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endfor %}
-      {% endif %}
+    <!-- Display messages (if any) -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
 
-{% block body %} {% endblock body %}
-
+    {% block body %} {% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>

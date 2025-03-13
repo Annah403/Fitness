@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title%}Contact{% endblock title%}
+{% block title %}Contact{% endblock title %}
 
 {% block body %}
+<div class="container-fluid px-0 position-relative">
+    <!-- Image -->
+    <img src="{% static 'images/theme2.jpg' %}" class="d-block w-100" alt="Contact Us">
 
-<div class="container-fluid px-0">
-    <img src="../static/images/pexels-823sl-2294403.jpg" class="d-block w-100" alt="...">
-</div>
-
-<div class="container py-4">
-    <h1 class="text-center">Contact Us</h1>
-    <form method="post" action="/contact">
-    {% csrf_token %}
-        <div class="form-group">
-            <label for="name"><b>Name</b></label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-        </div>
-        <div class="form-group">
-            <label for="email"><b>Email address</b></label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email">
-        </div>
-        <div class="form-group">
-            <label for="phone"><b>Phone Number</b></label>
-            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter your Phone number">
-        </div>
-        <div class="form-group">
-            <label for="desc"><b>Tell me About yourself</b></label>
-            <textarea class="form-control" id="desc" rows="3"name="desc"></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
+    <!-- Form Container Positioned Over the Image -->
+    <div class="position-absolute top-50 start-50 translate-middle text-white w-50 p-4 bg-dark bg-opacity-50 rounded">
+        <h1 class="text-center">Contact Us</h1>
+        <form method="post" action="/contact">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="name"><b></b></label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><b></b></label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone"><b></b></label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your Phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="desc"><b></b></label>
+                <textarea class="form-control" id="desc" rows="3" name="desc" placeholder="Tell us about yourself" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
 </div>
 
 {% endblock body %}
